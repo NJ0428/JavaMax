@@ -1,1 +1,1 @@
-<h1>JavaMax</h1>
+<h1>JavaMax🎶</h1>
