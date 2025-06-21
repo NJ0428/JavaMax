@@ -87,12 +87,17 @@ public class Main {
 	public static final int BACK_BUTTON_HEIGHT = 60;
 
 	// 리소스 경로
-	public static final String IMAGE_PATH = "../images/";
-	public static final String MUSIC_PATH = "../music/";
+	public static final String IMAGE_PATH = "/images/";
+	public static final String MUSIC_PATH = "/music/";
 
+	/**
+	 * 프로그램의 시작점입니다.
+	 * JavaMax 게임을 실행합니다.
+	 * 
+	 * @param args 명령줄 인수
+	 */
 	public static void main(String[] args) {
-		// TODO Auto-generated method stub
-
+		// JavaMax 게임 시작
 		new JavaMax();
 	}
 

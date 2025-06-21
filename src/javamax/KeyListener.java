@@ -30,7 +30,6 @@ public class KeyListener extends KeyAdapter {
 
 	// 키 코드와 액션을 매핑하는 Map
 	private static final Map<Integer, String> KEY_MAPPING;
-	private JavaMax javaMax; // JavaMax 인스턴스 참조
 
 	static {
 		KEY_MAPPING = new HashMap<>();
@@ -47,18 +46,8 @@ public class KeyListener extends KeyAdapter {
 		// 기본 생성자
 	}
 
-	public KeyListener(JavaMax javaMax) {
-		this.javaMax = javaMax;
-	}
-
 	@Override
 	public void keyPressed(KeyEvent e) {
-		// 설정 화면에서의 키 입력 처리
-		if (isSettingsScreen()) {
-			handleSettingsKeyPress(e);
-			return;
-		}
-
 		if (!isGameActive()) {
 			return;
 		}
@@ -180,57 +169,4 @@ public class KeyListener extends KeyAdapter {
 		return KEY_MAPPING.get(keyCode);
 	}
 
-	/**
-	 * 설정 화면인지 확인합니다
-	 */
-	private boolean isSettingsScreen() {
-		// JavaMax 인스턴스를 통해 설정 화면 상태 확인
-		if (javaMax != null) {
-			return javaMax.isSettingsScreen();
-		}
-		// 정적 접근 방식으로 폴백
-		return false;
-	}
-
-	/**
-	 * 설정 화면에서의 키 입력을 처리합니다
-	 */
-	private void handleSettingsKeyPress(KeyEvent e) {
-		if (javaMax == null)
-			return;
-
-		switch (e.getKeyCode()) {
-			case KeyEvent.VK_1: // 음량 감소
-				Settings settings = Settings.getInstance();
-				float currentVolume = settings.getVolume();
-				javaMax.changeSettings("volume", Math.max(0.0f, currentVolume - 0.1f));
-				break;
-			case KeyEvent.VK_2: // 음량 증가
-				settings = Settings.getInstance();
-				currentVolume = settings.getVolume();
-				javaMax.changeSettings("volume", Math.min(1.0f, currentVolume + 0.1f));
-				break;
-			case KeyEvent.VK_3: // 4키 모드
-				javaMax.changeSettings("keyCount", 4);
-				break;
-			case KeyEvent.VK_4: // 6키 모드
-				javaMax.changeSettings("keyCount", 6);
-				break;
-			case KeyEvent.VK_5: // 7키 모드
-				javaMax.changeSettings("keyCount", 7);
-				break;
-			case KeyEvent.VK_Q: // Easy 난이도
-				javaMax.changeSettings("difficulty", "Easy");
-				break;
-			case KeyEvent.VK_W: // Normal 난이도
-				javaMax.changeSettings("difficulty", "Normal");
-				break;
-			case KeyEvent.VK_E: // Hard 난이도
-				javaMax.changeSettings("difficulty", "Hard");
-				break;
-			case KeyEvent.VK_ESCAPE: // 뒤로가기
-				javaMax.backMain();
-				break;
-		}
-	}
 }

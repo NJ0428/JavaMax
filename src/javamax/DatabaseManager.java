@@ -146,7 +146,6 @@ public class DatabaseManager {
     /**
      * 저장된 점수 목록을 읽어옵니다.
      */
-    @SuppressWarnings("unchecked")
     private List<Map<String, Object>> readScores() {
         try {
             String content = readFile(SCORES_FILE);
@@ -198,7 +197,6 @@ public class DatabaseManager {
     /**
      * 트랙 목록을 읽어옵니다.
      */
-    @SuppressWarnings("unchecked")
     public List<Map<String, Object>> readTracks() {
         try {
             String content = readFile(TRACKS_FILE);
@@ -287,7 +285,6 @@ public class DatabaseManager {
     /**
      * 설정 맵을 읽어옵니다.
      */
-    @SuppressWarnings("unchecked")
     private Map<String, Object> readSettings() {
         try {
             String content = readFile(SETTINGS_FILE);

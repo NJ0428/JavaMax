@@ -34,44 +34,44 @@ public class JavaMax extends JFrame {
 	private Image screenImage;
 	private Graphics screenGraphic;
 
-	private ImageIcon exitButtonEnteredImage = new ImageIcon(Main.class.getResource("../images/exitButtonEntered.png"));// 나기기
+	private ImageIcon exitButtonEnteredImage = new ImageIcon(Main.class.getResource("/images/exitButtonEntered.png"));// 나기기
 																														// 이미지
-	private ImageIcon exitButtonBasicImage = new ImageIcon(Main.class.getResource("../images/exitButtonBasic.png"));// 나기기
+	private ImageIcon exitButtonBasicImage = new ImageIcon(Main.class.getResource("/images/exitButtonBasic.png"));// 나기기
 																													// 이미지
 																													// 명도50
 	private ImageIcon startButtonEnteredImage = new ImageIcon(
-			Main.class.getResource("../images/startButtonEntered.png"));// 시작버튼
-	private ImageIcon startButtonBasicImage = new ImageIcon(Main.class.getResource("../images/startButtonBasic.png"));// 시작버튼
-																														// 명도
-																														// 50
-	private ImageIcon quitButtonEnteredImage = new ImageIcon(Main.class.getResource("../images/quitButtonEntered.png"));// 종료버튼
-	private ImageIcon quitButtonBasicImage = new ImageIcon(Main.class.getResource("../images/quitButtonBasic.png"));// 종료버튼
+			Main.class.getResource("/images/startButtonEntered.png"));// 시작버튼
+	private ImageIcon startButtonBasicImage = new ImageIcon(Main.class.getResource("/images/startButtonBasic.png"));// 시작버튼
+																													// 명도
+																													// 50
+	private ImageIcon quitButtonEnteredImage = new ImageIcon(Main.class.getResource("/images/quitButtonEntered.png"));// 종료버튼
+	private ImageIcon quitButtonBasicImage = new ImageIcon(Main.class.getResource("/images/quitButtonBasic.png"));// 종료버튼
 																													// 명도50
-	private ImageIcon leftButtonEnteredImage = new ImageIcon(Main.class.getResource("../images/leftButtonEntered.png"));// 노래
+	private ImageIcon leftButtonEnteredImage = new ImageIcon(Main.class.getResource("/images/leftButtonEntered.png"));// 노래
 																														// <=
 																														// 선택버튼
-	private ImageIcon leftButtonBasicImage = new ImageIcon(Main.class.getResource("../images/leftButtonBasic.png"));// 노래
+	private ImageIcon leftButtonBasicImage = new ImageIcon(Main.class.getResource("/images/leftButtonBasic.png"));// 노래
 																													// <=
 																													// 선택버튼
 																													// 50
 	private ImageIcon rightButtonEnteredImage = new ImageIcon(
-			Main.class.getResource("../images/rightButtonEntered.png"));// 노래 => 선택버튼
-	private ImageIcon rightButtonBasicImage = new ImageIcon(Main.class.getResource("../images/rightButtonBasic.png"));// 노래
-																														// =>
-																														// 선택버튼
-																														// 50
-	private ImageIcon easyButtonEnteredImage = new ImageIcon(Main.class.getResource("../images/easyButtonEntered.png"));// 이지
+			Main.class.getResource("/images/rightButtonEntered.png"));// 노래 => 선택버튼
+	private ImageIcon rightButtonBasicImage = new ImageIcon(Main.class.getResource("/images/rightButtonBasic.png"));// 노래
+																													// =>
+																													// 선택버튼
+																													// 50
+	private ImageIcon easyButtonEnteredImage = new ImageIcon(Main.class.getResource("/images/easyButtonEntered.png"));// 이지
 																														// 버튼
-	private ImageIcon easyButtonBasicImage = new ImageIcon(Main.class.getResource("../images/easyButtonBasic.png"));// 이지
+	private ImageIcon easyButtonBasicImage = new ImageIcon(Main.class.getResource("/images/easyButtonBasic.png"));// 이지
 																													// 버튼
-	private ImageIcon hardButtonEnteredImage = new ImageIcon(Main.class.getResource("../images/hardButtonEntered.png"));// 하드
+	private ImageIcon hardButtonEnteredImage = new ImageIcon(Main.class.getResource("/images/hardButtonEntered.png"));// 하드
 																														// 버튼
-	private ImageIcon hardButtonBasicImage = new ImageIcon(Main.class.getResource("../images/hardButtonBasic.png"));// 하드
+	private ImageIcon hardButtonBasicImage = new ImageIcon(Main.class.getResource("/images/hardButtonBasic.png"));// 하드
 																													// 버튼
 																													// 50
-	private ImageIcon backButtonEnteredImage = new ImageIcon(Main.class.getResource("../images/backButtonEntered.png"));// 뒤로가기
+	private ImageIcon backButtonEnteredImage = new ImageIcon(Main.class.getResource("/images/backButtonEntered.png"));// 뒤로가기
 																														// 버튼
-	private ImageIcon backButtonBasicImage = new ImageIcon(Main.class.getResource("../images/backButtonBasic.png"));// 뒤로가기버튼
+	private ImageIcon backButtonBasicImage = new ImageIcon(Main.class.getResource("/images/backButtonBasic.png"));// 뒤로가기버튼
 																													// 50
 	// private Image titleImage = new
 	// ImageIcon(Main.class.getResource("../images/Chilituna.png")).getImage();
@@ -79,9 +79,9 @@ public class JavaMax extends JFrame {
 	// ImageIcon(Main.class.getResource("../images/Mighty Love Title
 	// Image.png")).getImage();
 
-	private Image background = new ImageIcon(Main.class.getResource("../images/introBackground.jpg")).getImage();// 배경
+	private Image background = new ImageIcon(Main.class.getResource("/images/introBackground.jpg")).getImage();// 배경
 
-	private JLabel menuBar = new JLabel(new ImageIcon(Main.class.getResource("../images/menuBar.png")));// 메뉴바 이미지
+	private JLabel menuBar = new JLabel(new ImageIcon(Main.class.getResource("/images/menuBar.png")));// 메뉴바 이미지
 	private JButton exitButton = new JButton(exitButtonBasicImage);// 프로그램 종료 버튼
 	private JButton startButton = new JButton(startButtonBasicImage);// 시작 버튼
 	private JButton quitButton = new JButton(quitButtonBasicImage);// 종료 버튼
@@ -455,9 +455,11 @@ public class JavaMax extends JFrame {
 		// 화면 재조정
 		try {
 			Thread.sleep(5);
+		} catch (InterruptedException e) {
+			Thread.currentThread().interrupt();
+			System.err.println("화면 그리기 중 인터럽트 발생: " + e.getMessage());
 		} catch (Exception e) {
-			// TODO: handle exception
-			e.printStackTrace();
+			System.err.println("화면 그리기 중 오류 발생: " + e.getMessage());
 		}
 		this.repaint();// 프로그램 반복되면서 돌려준다
 	}
@@ -467,9 +469,9 @@ public class JavaMax extends JFrame {
 			selectedMusic.close();// 어떤 곡이 실행 되고 있다면 종료
 		// 현재 선택한 곡의 타이틀을 가져와서 넣어준다.
 		// 음악 이미지
-		titleImage = new ImageIcon(Main.class.getResource("../images/" + trackList.get(nowSelected).getTitleImage()))
+		titleImage = new ImageIcon(Main.class.getResource("/images/" + trackList.get(nowSelected).getTitleImage()))
 				.getImage();
-		selectedImage = new ImageIcon(Main.class.getResource("../images/" + trackList.get(nowSelected).getStartImage()))
+		selectedImage = new ImageIcon(Main.class.getResource("/images/" + trackList.get(nowSelected).getStartImage()))
 				.getImage();
 		selectedMusic = new Music(trackList.get(nowSelected).getStartMusic(), true);// 선택한 곡 하이라트 부분 무안 재생
 		selectedMusic.start();// 현재 선택한 곡의 타이틀을 가져와서 넣어준다.
@@ -507,7 +509,7 @@ public class JavaMax extends JFrame {
 		hardButton.setVisible(true);
 		scoreButton.setVisible(true);
 
-		background = new ImageIcon(Main.class.getResource("../images/mainBackground.jpg"))
+		background = new ImageIcon(Main.class.getResource("/images/mainBackground.jpg"))
 				.getImage();
 		backButton.setVisible(false);// 뒤로가기 숨기기
 		selectTrack(nowSelected);// 하이라이트 부분 재생
@@ -528,7 +530,7 @@ public class JavaMax extends JFrame {
 		hardButton.setVisible(false);
 		scoreButton.setVisible(false);
 
-		background = new ImageIcon(Main.class.getResource("../images/" + trackList.get(nowSelected).getGameImage()))
+		background = new ImageIcon(Main.class.getResource("/images/" + trackList.get(nowSelected).getGameImage()))
 				.getImage();// 현재 선택이 된 게임의 이미지를 불러온다
 		backButton.setVisible(true);
 		isGameScreen = true;
@@ -546,7 +548,7 @@ public class JavaMax extends JFrame {
 		startButton.setVisible(false);// 시작버튼 안 보이도록 하기
 		quitButton.setVisible(false);// 종료버튼 안 보이도록 하기
 
-		background = new ImageIcon(Main.class.getResource("../images/mainBackground.jpg")).getImage();// 게임 시작 배경
+		background = new ImageIcon(Main.class.getResource("/images/mainBackground.jpg")).getImage();// 게임 시작 배경
 
 		isMainScreen = true;// 선택곡 이미지로 변경
 

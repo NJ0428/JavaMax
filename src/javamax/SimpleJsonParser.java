@@ -52,7 +52,6 @@ public class SimpleJsonParser {
     /**
      * JSON 배열 문자열을 List로 파싱합니다.
      */
-    @SuppressWarnings("unchecked")
     public static List<Map<String, Object>> parseArray(String json) {
         List<Map<String, Object>> result = new ArrayList<>();
         if (json == null || json.trim().isEmpty() || json.trim().equals("[]")) {
