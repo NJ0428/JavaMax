@@ -15,62 +15,153 @@ package javamax;
 
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
+import java.util.HashMap;
+import java.util.Map;
 
+/**
+ * 키보드 입력을 처리하는 클래스
+ * 게임 진행 중 키 입력을 감지하고 해당 액션을 실행합니다.
+ * 
+ * @author PNJ
+ * @version 1.0
+ * @since 2024-02-20
+ */
 public class KeyListener extends KeyAdapter {
 
-	@Override
-	public void keyPressed(KeyEvent e) {//어떤한 키를 눌렸는지 확인
-		if(JavaMax.game == null) {
-			return;//현재 게임이 진행 되고 있지 않으면 변화없음
-		}
-		if(e.getKeyCode() == KeyEvent.VK_S) {
-			JavaMax.game.pressS();
-		}
-		else if(e.getKeyCode() == KeyEvent.VK_D) {
-			JavaMax.game.pressD();
-		}
-		else if(e.getKeyCode() == KeyEvent.VK_F) {
-			JavaMax.game.pressF();
-		}
-		else if(e.getKeyCode() == KeyEvent.VK_SPACE) {
-			JavaMax.game.pressSpace();
-		}
-		else if(e.getKeyCode() == KeyEvent.VK_J) {
-			JavaMax.game.pressJ();
-		}
-		else if(e.getKeyCode() == KeyEvent.VK_K) {
-			JavaMax.game.pressK();
-		}
-		else if(e.getKeyCode() == KeyEvent.VK_L) {
-			JavaMax.game.pressL();
-		}
-	}
-	
-	@Override
-	public void keyReleased(KeyEvent e) {//어떤한 키를 눌렀을때 어떠한 반응 할지
-		if(JavaMax.game == null)
-			return;//현재 게임이 진행 되고 있지 않으면 변화없음
-		if(e.getKeyCode() == KeyEvent.VK_S) {
-			JavaMax.game.releaseS();
-    	}
-		else if(e.getKeyCode() == KeyEvent.VK_D) {
-			JavaMax.game.releaseD();
-    	}
-		else if(e.getKeyCode() == KeyEvent.VK_F) {
-			JavaMax.game.releaseF();
-    	}           
-		else if(e.getKeyCode() == KeyEvent.VK_SPACE) {
-			JavaMax.game.releaseSpace();
-    	}           
-		else if(e.getKeyCode() == KeyEvent.VK_J) {
-			JavaMax.game.releaseJ();
-    	}           	
-		else if(e.getKeyCode() == KeyEvent.VK_K) {
-			JavaMax.game.releaseK();
-    	}           	
-		else if(e.getKeyCode() == KeyEvent.VK_L) {
-			JavaMax.game.releaseL();
-    	}                   
+	// 키 코드와 액션을 매핑하는 Map
+	private static final Map<Integer, String> KEY_MAPPING;
+
+	static {
+		KEY_MAPPING = new HashMap<>();
+		KEY_MAPPING.put(KeyEvent.VK_S, "S");
+		KEY_MAPPING.put(KeyEvent.VK_D, "D");
+		KEY_MAPPING.put(KeyEvent.VK_F, "F");
+		KEY_MAPPING.put(KeyEvent.VK_SPACE, "Space");
+		KEY_MAPPING.put(KeyEvent.VK_J, "J");
+		KEY_MAPPING.put(KeyEvent.VK_K, "K");
+		KEY_MAPPING.put(KeyEvent.VK_L, "L");
 	}
 
+	@Override
+	public void keyPressed(KeyEvent e) {
+		if (!isGameActive()) {
+			return;
+		}
+
+		String keyType = KEY_MAPPING.get(e.getKeyCode());
+		if (keyType != null) {
+			executeKeyPressAction(keyType);
+		}
+	}
+
+	@Override
+	public void keyReleased(KeyEvent e) {
+		if (!isGameActive()) {
+			return;
+		}
+
+		String keyType = KEY_MAPPING.get(e.getKeyCode());
+		if (keyType != null) {
+			executeKeyReleaseAction(keyType);
+		}
+	}
+
+	/**
+	 * 게임이 활성 상태인지 확인합니다.
+	 * 
+	 * @return 게임이 활성 상태면 true
+	 */
+	private boolean isGameActive() {
+		return JavaMax.game != null;
+	}
+
+	/**
+	 * 키 눌림 액션을 실행합니다.
+	 * 
+	 * @param keyType 키 타입
+	 */
+	private void executeKeyPressAction(String keyType) {
+		try {
+			switch (keyType) {
+				case "S":
+					JavaMax.game.pressS();
+					break;
+				case "D":
+					JavaMax.game.pressD();
+					break;
+				case "F":
+					JavaMax.game.pressF();
+					break;
+				case "Space":
+					JavaMax.game.pressSpace();
+					break;
+				case "J":
+					JavaMax.game.pressJ();
+					break;
+				case "K":
+					JavaMax.game.pressK();
+					break;
+				case "L":
+					JavaMax.game.pressL();
+					break;
+			}
+		} catch (Exception ex) {
+			System.err.println("키 입력 처리 중 오류 발생: " + ex.getMessage());
+		}
+	}
+
+	/**
+	 * 키 해제 액션을 실행합니다.
+	 * 
+	 * @param keyType 키 타입
+	 */
+	private void executeKeyReleaseAction(String keyType) {
+		try {
+			switch (keyType) {
+				case "S":
+					JavaMax.game.releaseS();
+					break;
+				case "D":
+					JavaMax.game.releaseD();
+					break;
+				case "F":
+					JavaMax.game.releaseF();
+					break;
+				case "Space":
+					JavaMax.game.releaseSpace();
+					break;
+				case "J":
+					JavaMax.game.releaseJ();
+					break;
+				case "K":
+					JavaMax.game.releaseK();
+					break;
+				case "L":
+					JavaMax.game.releaseL();
+					break;
+			}
+		} catch (Exception ex) {
+			System.err.println("키 해제 처리 중 오류 발생: " + ex.getMessage());
+		}
+	}
+
+	/**
+	 * 지원하는 키인지 확인합니다.
+	 * 
+	 * @param keyCode 키 코드
+	 * @return 지원하는 키면 true
+	 */
+	public static boolean isSupportedKey(int keyCode) {
+		return KEY_MAPPING.containsKey(keyCode);
+	}
+
+	/**
+	 * 키 코드에 해당하는 키 타입을 반환합니다.
+	 * 
+	 * @param keyCode 키 코드
+	 * @return 키 타입 문자열
+	 */
+	public static String getKeyType(int keyCode) {
+		return KEY_MAPPING.get(keyCode);
+	}
 }
