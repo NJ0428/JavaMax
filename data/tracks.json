@@ -1,0 +1,35 @@
+[
+  {
+    "titleImage": "Goodbye_mr_my.png",
+    "difficulty": ["Easy", "Hard"],
+    "titleName": "Goodbye Mr. My 머리카락",
+    "bestScore": 2220,
+    "gameImage": "introBackground.jpg",
+    "id": 1,
+    "startImage": "hellomo.png",
+    "gameMusic": "hellomy.mp3",
+    "startMusic": "hellomy.mp3"
+  },
+  {
+    "titleImage": "Nathan_Evans_Wellerman.png",
+    "difficulty": ["Easy", "Hard"],
+    "titleName": "Nathan Evans Wellerman",
+    "bestScore": 0,
+    "gameImage": "introBackground.jpg",
+    "id": 2,
+    "startImage": "Energy Start Image.png",
+    "gameMusic": "Wellerman.mp3",
+    "startMusic": "Wellerman.mp3"
+  },
+  {
+    "titleImage": "Super_Shy_NewJeans.png",
+    "difficulty": ["Easy", "Hard"],
+    "titleName": "Super Shy 뉴진스",
+    "bestScore": 0,
+    "gameImage": "introBackground.jpg",
+    "id": 3,
+    "startImage": "Super Shy.gif",
+    "gameMusic": "Super Shy.mp3",
+    "startMusic": "Super Shy.mp3"
+  }
+]

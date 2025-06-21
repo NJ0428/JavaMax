@@ -1,0 +1,28 @@
+{
+  "volume": 0.10000002,
+  "keyCount": 4,
+  "difficulty": "Easy",
+  "keyMapping7": {
+    "key1": 83,
+    "key2": 68,
+    "key5": 74,
+    "key6": 75,
+    "key3": 70,
+    "key4": 32,
+    "key7": 76
+  },
+  "keyMapping6": {
+    "key1": 83,
+    "key2": 68,
+    "key5": 75,
+    "key6": 76,
+    "key3": 70,
+    "key4": 74
+  },
+  "keyMapping4": {
+    "key1": 68,
+    "key2": 70,
+    "key3": 74,
+    "key4": 75
+  }
+}

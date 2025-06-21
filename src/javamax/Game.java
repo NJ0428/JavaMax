@@ -59,33 +59,37 @@ public class Game extends Thread {
 	private final Map<String, Image> keyPadImages;
 	private final Map<String, Image> judgeImages;
 
-	private Image noteRouteLineImage = new ImageIcon(Main.class.getResource("../images/noteRouteLine.png"))
+	private Image noteRouteLineImage = new ImageIcon(Main.class.getResource("../images/ui/game/noteRouteLine.png"))
 			.getImage();
-	private Image judgementLineImage = new ImageIcon(Main.class.getResource("../images/judgementLine.png"))
+	private Image judgementLineImage = new ImageIcon(Main.class.getResource("../images/ui/judgment/judgementLine.png"))
 			.getImage();
-	private Image gameInfoImage = new ImageIcon(Main.class.getResource("../images/gameInfo.png"))
+	private Image gameInfoImage = new ImageIcon(Main.class.getResource("../images/ui/game/gameInfo.png"))
 			.getImage();//
 
-	private Image noteRouteSImage = new ImageIcon(Main.class.getResource("../images/noteRoute.png")).getImage();
-	private Image noteRouteDImage = new ImageIcon(Main.class.getResource("../images/noteRoute.png")).getImage();
-	private Image noteRouteFImage = new ImageIcon(Main.class.getResource("../images/noteRoute.png")).getImage();
+	private Image noteRouteSImage = new ImageIcon(Main.class.getResource("../images/ui/game/noteRoute.png")).getImage();
+	private Image noteRouteDImage = new ImageIcon(Main.class.getResource("../images/ui/game/noteRoute.png")).getImage();
+	private Image noteRouteFImage = new ImageIcon(Main.class.getResource("../images/ui/game/noteRoute.png")).getImage();
 
 	// Space1와 Space2 나누어진 이유는 다른 노트보다 길어서
-	private Image noteRouteSpace1Image = new ImageIcon(Main.class.getResource("../images/noteRoute.png")).getImage();
-	private Image noteRouteSpace2Image = new ImageIcon(Main.class.getResource("../images/noteRoute.png")).getImage();
-	private Image noteRouteJImage = new ImageIcon(Main.class.getResource("../images/noteRoute.png")).getImage();
-	private Image noteRouteKImage = new ImageIcon(Main.class.getResource("../images/noteRoute.png")).getImage();
-	private Image noteRouteLImage = new ImageIcon(Main.class.getResource("../images/noteRoute.png")).getImage();
+	private Image noteRouteSpace1Image = new ImageIcon(Main.class.getResource("../images/ui/game/noteRoute.png"))
+			.getImage();
+	private Image noteRouteSpace2Image = new ImageIcon(Main.class.getResource("../images/ui/game/noteRoute.png"))
+			.getImage();
+	private Image noteRouteJImage = new ImageIcon(Main.class.getResource("../images/ui/game/noteRoute.png")).getImage();
+	private Image noteRouteKImage = new ImageIcon(Main.class.getResource("../images/ui/game/noteRoute.png")).getImage();
+	private Image noteRouteLImage = new ImageIcon(Main.class.getResource("../images/ui/game/noteRoute.png")).getImage();
 	private Image blueFlare;
 	private Image judgeImage;
-	private Image keyPadSImage = new ImageIcon(Main.class.getResource("../images/KeyPadBasic.png")).getImage();
-	private Image keyPadDImage = new ImageIcon(Main.class.getResource("../images/KeyPadBasic.png")).getImage();
-	private Image keyPadFImage = new ImageIcon(Main.class.getResource("../images/KeyPadBasic.png")).getImage();
-	private Image keyPadSpace1Image = new ImageIcon(Main.class.getResource("../images/KeyPadBasic.png")).getImage();
-	private Image keyPadSpace2Image = new ImageIcon(Main.class.getResource("../images/KeyPadBasic.png")).getImage();
-	private Image keyPadJImage = new ImageIcon(Main.class.getResource("../images/KeyPadBasic.png")).getImage();
-	private Image keyPadKImage = new ImageIcon(Main.class.getResource("../images/KeyPadBasic.png")).getImage();
-	private Image keyPadLImage = new ImageIcon(Main.class.getResource("../images/KeyPadBasic.png")).getImage();
+	private Image keyPadSImage = new ImageIcon(Main.class.getResource("../images/ui/game/KeyPadBasic.png")).getImage();
+	private Image keyPadDImage = new ImageIcon(Main.class.getResource("../images/ui/game/KeyPadBasic.png")).getImage();
+	private Image keyPadFImage = new ImageIcon(Main.class.getResource("../images/ui/game/KeyPadBasic.png")).getImage();
+	private Image keyPadSpace1Image = new ImageIcon(Main.class.getResource("../images/ui/game/KeyPadBasic.png"))
+			.getImage();
+	private Image keyPadSpace2Image = new ImageIcon(Main.class.getResource("../images/ui/game/KeyPadBasic.png"))
+			.getImage();
+	private Image keyPadJImage = new ImageIcon(Main.class.getResource("../images/ui/game/KeyPadBasic.png")).getImage();
+	private Image keyPadKImage = new ImageIcon(Main.class.getResource("../images/ui/game/KeyPadBasic.png")).getImage();
+	private Image keyPadLImage = new ImageIcon(Main.class.getResource("../images/ui/game/KeyPadBasic.png")).getImage();
 
 	private String titleName;// 현재 실행할 곡
 	private String difficulty;// 난이도 설정
@@ -94,6 +98,7 @@ public class Game extends Thread {
 	private int currentScore;// 현재 점수
 	private boolean gameEnded = false;// 게임 종료 여부
 	private DatabaseManager dbManager;// 데이터베이스 매니저
+	private Settings settings;// 설정 객체
 
 	// 각각의 노트를 관리
 	ArrayList<Note> noteList = new ArrayList<Note>();
@@ -120,6 +125,7 @@ public class Game extends Thread {
 		this.keyPadImages = new HashMap<>();
 		this.judgeImages = new HashMap<>();
 		this.dbManager = DatabaseManager.getInstance();
+		this.settings = Settings.getInstance();
 
 		initializeImages();
 		this.gameMusic = new Music(this.musicTitle, false);// 한번번 실행 되도록
